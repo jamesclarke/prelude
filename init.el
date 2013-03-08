@@ -109,4 +109,12 @@ Emacs load path."
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
+
+;; JAC preference
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(add-hook 'find-file-hook (lambda () (linum-mode 1)))
+
+
 ;;; init.el ends here
