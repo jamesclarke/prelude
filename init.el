@@ -115,6 +115,6 @@ Emacs load path."
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
-
+(setq prelude-guru nil)
 
 ;;; init.el ends here
