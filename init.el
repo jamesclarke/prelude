@@ -116,5 +116,6 @@ by Prelude.")
 (scroll-bar-mode -1)
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 (setq prelude-guru nil)
+(setq prelude-whitespace nil)
 
 ;;; init.el ends here
