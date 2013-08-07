@@ -45,7 +45,7 @@
                                 (other-window -1))) ;; back one
 
 ;; Indentation help
-(global-set-key (kbd "C-x ^") 'join-line)
+(global-set-key (kbd "C-^") 'prelude-top-join-line)
 
 ;; Start proced in a similar manner to dired
 (global-set-key (kbd "C-x p") 'proced)
@@ -74,6 +74,14 @@
 (autoload 'zap-up-to-char "misc" "Kill up to, but not including ARGth occurrence of CHAR.")
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
 
+;; kill lines backward
+(global-set-key (kbd "C-<backspace>") (lambda ()
+                                        (interactive)
+                                        (kill-line 0)
+                                        (indent-according-to-mode)))
+
+(global-set-key [remap kill-whole-line] 'prelude-kill-whole-line)
+
 ;; Activate occur easily inside isearch
 (define-key isearch-mode-map (kbd "C-o")
   (lambda () (interactive)
@@ -87,6 +95,9 @@
 
 ;; replace buffer-menu with ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(unless (fboundp 'toggle-frame-fullscreen)
+  (global-set-key (kbd "<f11>") 'prelude-fullscreen))
 
 ;; toggle menu-bar visibility
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
@@ -102,6 +113,17 @@
 
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 (global-set-key (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;; key chords
+(require 'key-chord)
+
+(key-chord-define-global "jj" 'ace-jump-word-mode)
+(key-chord-define-global "jl" 'ace-jump-line-mode)
+(key-chord-define-global "jk" 'ace-jump-char-mode)
+(key-chord-define-global "JJ" 'prelude-switch-to-previous-buffer)
+(key-chord-define-global "uu" 'undo-tree-visualize)
+
+(key-chord-mode +1)
 
 (provide 'prelude-global-keybindings)
 
